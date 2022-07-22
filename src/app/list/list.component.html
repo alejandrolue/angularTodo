@@ -1,0 +1,12 @@
+<div *ngFor="let info of data">
+  <div *ngIf="!edit">
+    <input type="checkbox" value="{{info.checked}}" (change)="onChange(info)">
+    <label>{{info.todo}}</label>
+  </div>
+  <div *ngIf="edit">
+    <label>{{info.todo}}</label>
+    <input [(ngModel)]="newInput">
+    <app-buttons buttonTitle="X" (click)="delete(info)"></app-buttons>
+    <app-buttons buttonTitle="+"></app-buttons>
+  </div>
+</div>

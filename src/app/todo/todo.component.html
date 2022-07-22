@@ -1,0 +1,9 @@
+<app-title></app-title>
+<app-list [data]="todo" [edit]="edit"></app-list>
+<input [(ngModel)]="input">
+<div class="buttons">
+  <app-buttons buttonTitle="add" (click)="add()"></app-buttons>
+  <app-buttons buttonTitle="{{text}}" (click)="enableEdit()" [disabled]="disabled"></app-buttons>
+  <app-buttons buttonTitle="clear list" (click)="clearList()" [disabled]="disabled"></app-buttons>
+</div>
+
