@@ -1,12 +1,15 @@
-<div *ngFor="let info of data">
+<div *ngFor="let info of data; let i = index">
   <div *ngIf="!edit">
-    <input type="checkbox" value="{{info.checked}}" (change)="onChange(info)">
-    <label>{{info.todo}}</label>
+    <div *ngIf="!info.checked">
+      <input type="checkbox" (change)="setChecked(i)">
+      <label class="label">{{info.todo}}</label>
+    </div>
   </div>
   <div *ngIf="edit">
-    <label>{{info.todo}}</label>
-    <input [(ngModel)]="newInput">
-    <app-buttons buttonTitle="X" (click)="delete(info)"></app-buttons>
-    <app-buttons buttonTitle="+"></app-buttons>
+    <div *ngIf="!info.checked">
+      <input value="{{info.todo}}" #username>
+      <app-buttons buttonTitle="X" (click)="delete(i)"></app-buttons>
+      <app-buttons buttonTitle="+" (click)="onChange(username.value, i)"></app-buttons>
+    </div>
   </div>
 </div>

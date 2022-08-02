@@ -24,6 +24,7 @@ export class TodoComponent implements OnInit {
   disabled: boolean;
   edit = true;
   text: string;
+  test: boolean;
 
   constructor() { }
 
@@ -35,11 +36,12 @@ export class TodoComponent implements OnInit {
   enableEdit(): void {
     this.edit = !this.edit;
     if (this.edit === true) {
-      this.text = 'cancel';
+      this.text = 'save';
     } else {
       this.text = 'edit';
     }
   }
+
 
   checkIfEmpty(): boolean {
     if ( this.todo.length === 0 ) {

@@ -6,4 +6,13 @@
   <app-buttons buttonTitle="{{text}}" (click)="enableEdit()" [disabled]="disabled"></app-buttons>
   <app-buttons buttonTitle="clear list" (click)="clearList()" [disabled]="disabled"></app-buttons>
 </div>
-
+<div>
+  <div>
+    <h1>Finished Tasks</h1>
+  </div>
+  <div *ngFor="let items of todo">
+    <div *ngIf="items.checked">
+      {{items.todo}}
+    </div>
+  </div>
+</div>

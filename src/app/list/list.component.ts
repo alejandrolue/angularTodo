@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {List} from '../todo/todo.component';
+import {List, TodoComponent} from '../todo/todo.component';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-list',
@@ -10,22 +11,34 @@ export class ListComponent implements OnInit {
   @Input() data: List[] = [];
   @Input() edit: boolean;
   index: any;
-  newInput: string;
 
-  constructor() { }
+
+  constructor(
+    private todoComponent: TodoComponent
+  ) { }
 
   ngOnInit(): void {
+    this.todoComponent.checkIfEmpty();
   }
 
-  onChange(id): void {
-    this.index = id;
-    console.log(this.index);
+  setChecked(id): void {
+    this.data[id].checked = !this.data[id].checked;
+    console.log(this.data);
+    console.log(this.data[id].checked);
+    this.todoComponent.checkIfAlreadyDone();
   }
 
-  delete(index): void {
-    console.log(index);
-    this.data.splice(this.data.indexOf(index.todo) );
+  onChange(input, id): void {
+    this.data[id].todo = input;
+    console.log(input);
+  }
 
+  // tslint:disable-next-line:typedef
+  delete(id: number) {
+    console.log(id);
+    console.log(this.data);
+    this.data.splice(id);
+    this.todoComponent.checkIfEmpty();
   }
 
 }
